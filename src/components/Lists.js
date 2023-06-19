@@ -91,15 +91,13 @@ function Lists() {
         }
     }
 
-    const dragEnd = (result) => {
-        console.log(result);
+    const dragEnd = (result) => {        
         if (result.destination) {
             if (result.destination.droppableId !== result.source.droppableId) {
                 if (result.destination.droppableId.toLowerCase() === 'todo') {
                     toDoDrop(result.source.droppableId, result.draggableId)
                 }
-                if (result.destination.droppableId.toLowerCase() === 'onprogress') {
-                    console.log('hello');
+                if (result.destination.droppableId.toLowerCase() === 'onprogress') {                    
                     onProgessDrop(result.source.droppableId, result.draggableId)
                 }
                 if (result.destination.droppableId.toLowerCase() === 'done') {
