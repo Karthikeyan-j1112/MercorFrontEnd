@@ -1,0 +1,116 @@
+{
+    "toDo": [
+        {
+            "id": "1001",
+            "Name": "Brainstorming",
+            "text": "Brainstorming brings team members' diverse experience into play.",
+            "priority": "Low",
+            "Shared": [
+                "John",
+                "Peter",
+                "Master"
+            ],
+            "comments": 12,
+            "files": 0
+        },
+        {
+            "id": "1002",
+            "Name": "Research",
+            "text": "User research helps you to create an optimal product for users.",
+            "priority": "High",
+            "Shared": [
+                "John",
+                "Peter"
+            ],
+            "comments": 10,
+            "files": 3
+        },
+        {
+            "id": "1003",
+            "Name": "Wireframes",
+            "text": "Low fidelity wireframes include the most basic content and visuals.",
+            "priority": "High",
+            "Shared": [
+                "John",
+                "Peter",
+                "Harry"
+            ],
+            "comments": 2,
+            "files": 0
+        },
+        {
+            "id": "1004",
+            "Name": "Unit Testing",
+            "text": "Testing all the components are working",
+            "priority": "Low",
+            "Shared": [
+                "John",
+                "Peter",
+                "Harry",
+                "Master"
+            ],
+            "comments": 20,
+            "files": 7
+        }
+    ],
+    "onProgress": [
+        {
+            "id": "2001",
+            "Name": "Onboarding Illustrations",
+            "photos": [
+                "flower.svg"
+            ],
+            "priority": "Low",
+            "Shared": [
+                "John",
+                "Peter",
+                "Master"
+            ],
+            "comments": 14,
+            "files": 15
+        },
+        {
+            "id": "2002",
+            "Name": "Moodboard",
+            "photos": [
+                "plant.svg",
+                "dog.svg"
+            ],
+            "priority": "Low",
+            "Shared": [
+                "John"
+            ],
+            "comments": 9,
+            "files": 10
+        }
+    ],
+    "Done": [
+        {
+            "id": "3001",
+            "Name": "Mobile App Design",
+            "photos": [
+                "mobiles.svg"
+            ],
+            "priority": "High",
+            "Shared": [
+                "John",
+                "Master"
+            ],
+            "comments": 12,
+            "files": 15
+        },
+        {
+            "id": "3002",
+            "Name": "Design System",
+            "text": "It just needs to adapt the UI from what you did before ",
+            "priority": "Low",
+            "Shared": [
+                "John",
+                "Master",
+                "Henry"
+            ],
+            "comments": 12,
+            "files": 15
+        }
+    ]
+}
