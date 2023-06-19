@@ -4,6 +4,7 @@ import list from './lists.json'
 import ToDo from './ToDo';
 import OnProgress from './OnProgress';
 import Done from './Done';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 function Lists() {
     const [toDo, setToDo] = useState(list.toDo);
@@ -14,18 +15,9 @@ function Lists() {
         setOnProgress(list.onProgress)
         setDone(list.Done)
     }, [])
-    const allowDrop = (ev) => {
-        ev.preventDefault();
-    }
-    const drag = (ev, id, list) => {
-        ev.dataTransfer.setData("id", id);
-        ev.dataTransfer.setData("list", list);
-    }
-    const onDrop1 = (ev) => {
-        ev.preventDefault();
-        let id = ev.dataTransfer.getData("id");
-        let list = ev.dataTransfer.getData("list");
-        if (list.toLowerCase() === 'onprogress') {
+
+    const toDoDrop = (source, id) => {
+        if (source.toLowerCase() === 'onprogress') {
             let items = onProgress
             for (let i = 0; i < items.length; i++) {
                 if (items[i].id === id) {
@@ -36,7 +28,7 @@ function Lists() {
                 }
             }
         }
-        if (list.toLowerCase() === 'done') {
+        if (source.toLowerCase() === 'done') {
             let items = done
             for (let i = 0; i < items.length; i++) {
                 if (items[i].id === id) {
@@ -48,11 +40,9 @@ function Lists() {
             }
         }
     }
-    const onDrop2 = (ev) => {
-        ev.preventDefault();
-        let id = ev.dataTransfer.getData("id");
-        let list = ev.dataTransfer.getData("list");
-        if (list.toLowerCase() === 'todo') {
+
+    const onProgessDrop = (source, id) => {
+        if (source.toLowerCase() === 'todo') {
             let items = toDo
             for (let i = 0; i < items.length; i++) {
                 if (items[i].id === id) {
@@ -63,7 +53,7 @@ function Lists() {
                 }
             }
         }
-        if (list.toLowerCase() === 'done') {
+        if (source.toLowerCase() === 'done') {
             let items = done
             for (let i = 0; i < items.length; i++) {
                 if (items[i].id === id) {
@@ -75,11 +65,9 @@ function Lists() {
             }
         }
     }
-    const onDrop3 = (ev) => {
-        ev.preventDefault();
-        let id = ev.dataTransfer.getData("id");
-        let list = ev.dataTransfer.getData("list");
-        if (list.toLowerCase() === 'todo') {
+
+    const doneDrop = (source, id) => {
+        if (source.toLowerCase() === 'todo') {
             let items = toDo
             for (let i = 0; i < items.length; i++) {
                 if (items[i].id === id) {
@@ -90,7 +78,7 @@ function Lists() {
                 }
             }
         }
-        if (list.toLowerCase() === 'onprogress') {
+        if (source.toLowerCase() === 'onprogress') {
             let items = onProgress
             for (let i = 0; i < items.length; i++) {
                 if (items[i].id === id) {
@@ -103,7 +91,26 @@ function Lists() {
         }
     }
 
+    const dragEnd = (result) => {
+        console.log(result);
+        if (result.destination) {
+            if (result.destination.droppableId !== result.source.droppableId) {
+                if (result.destination.droppableId.toLowerCase() === 'todo') {
+                    toDoDrop(result.source.droppableId, result.draggableId)
+                }
+                if (result.destination.droppableId.toLowerCase() === 'onprogress') {
+                    console.log('hello');
+                    onProgessDrop(result.source.droppableId, result.draggableId)
+                }
+                if (result.destination.droppableId.toLowerCase() === 'done') {
+                    doneDrop(result.source.droppableId, result.draggableId)
+                }
+            }
+        }
+    }
+
     return (
+
         <Stack
             direction={'row'}
             spacing={2}
@@ -112,11 +119,15 @@ function Lists() {
             marginBottom={2}
             maxHeight={`600px`}
         >
-            <ToDo toDo={toDo} allowDrop={allowDrop} drag={drag} onDrop={onDrop1} />
-            <OnProgress onProgress={onProgress} allowDrop={allowDrop} drag={drag} onDrop={onDrop2} />
-            <Done done={done} allowDrop={allowDrop} drag={drag} onDrop={onDrop3} />
-
+            <DragDropContext
+                onDragEnd={dragEnd}
+            >
+                <ToDo toDo={toDo} />
+                <OnProgress onProgress={onProgress} />
+                <Done done={done} />
+            </DragDropContext>
         </Stack>
+
     )
 }
 
